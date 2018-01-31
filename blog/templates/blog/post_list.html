@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	<!-- Fuckin heading Title -->
+	<h1 class="my-4">Post
+        <small>Recently Added</small>
+	</h1>
+
+
+	{% for post in posts %}
+		<div class="card mb-4">
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <p class="card-text">{{ post.text|linebreaksbr }}</p>
+              <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on {{ post.published_date }} by
+              <a href="#">{{ post.author }}</a>
+            </div>
+          </div>
+
+
+		<!--
+		<div class="post">
+			<div class="date">
+				<p>published: {{ post.published_date }}</p>
+			</div>
+			
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			<!--<h1><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h1>-->
+			<!--<p>{{ post.text|linebreaksbr }}</p>
+		</div>-->
+	{% endfor %}
+
+	<!-- Pagination -->
+	  <ul class="pagination justify-content-center mb-4">
+	    <li class="page-item">
+	      <a class="page-link" href="#">&larr; Older</a>
+	    </li>
+	    <li class="page-item disabled">
+	      <a class="page-link" href="#">Newer &rarr;</a>
+	    </li>
+	  </ul>
+{% endblock %}
